@@ -25,6 +25,7 @@
 
 #include "rrd_tool.h"
 #include "rrd_rpncalc.h"
+#include "mutex.h"
 
 #ifdef WIN32
 #  include <windows.h>
@@ -283,6 +284,7 @@ typedef struct image_desc_t {
     PangoLayout *layout; /* the pango layout we use for writing fonts */
     rrd_info_t *grinfo; /* root pointer to extra graph info */
     rrd_info_t *grinfo_current; /* pointing to current entry */
+    mutex_t *fontmap_mutex; /* Mutex for locking the global fontmap */
 } image_desc_t;
 
 /* Prototypes */
